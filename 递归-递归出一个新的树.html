@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>递归-递归出一个新的树</title>
+</head>
+
+<body>
+    <script>
+        var das = [{
+            name: 'admin',
+            dispalyName: 'admin',
+            children: [{
+                name: 'admin.role',
+                dispalyName: 'admin.role',
+                children: [{
+                    name: 'admin.role.pk',
+                    dispalyName: 'admin.role.pk'
+                }]
+            }]
+        }, {
+            name: 'goods',
+            dispalyName: 'goods',
+            children: [{
+                name: 'goods.role',
+                dispalyName: 'goods.role',
+                children: [{
+                    name: 'goods.role.pk',
+                    dispalyName: 'goods.role.pk',
+                    children: [{
+                        name: 'good.role.pk.dk',
+                        dispalyName: 'good.role.pk.dk',
+                        children: [{
+                            name: 'good.role.pk.dk.ar',
+                            dispalyName: 'good.role.pk.dk.ar',
+                        }]
+                    }]
+                }, {
+                    name: 'goods.role.ck',
+                    displayName: 'goods.role.ck'
+                }]
+            }]
+        }]
+
+
+        thidDas = ['goods', 'admin.role'];
+        let newDats = []
+        let myDa = deeps(das, thidDas);
+        console.log(myDa);
+        // das.forEach((el, index) => {
+        //     let obj = {}
+        //     thidDas.forEach((endEl, endIndex) => {
+        //         if (el.name === endEl) {
+        //             obj.name = el.name;
+        //             obj.dispalyName = el.dispalyName;
+        //             obj.children = el.children;
+        //         }
+
+        //         if (el.children.length > 0) {
+        //             el.children.forEach((childEL, childIndx) => {
+        //                 this.thidDas.forEach((endChild, endCHildindex) => {
+        //                     if (childEL.name === endChild) {
+        //                         obj.children.name = childEL.name;
+        //                         obj.children.dispalyName = childEL.dispalyName
+        //                     }
+        //                 })
+        //             })
+        //         }
+        //     });
+
+        //     if (obj.hasOwnProperty(name)) {
+        //         newDats.push(obj)
+        //     }
+        // })
+
+
+        function deeps(ordArr, muArr) {
+            let obj = {};
+            console.log()
+            ordArr.forEach((el, index) => {
+                muArr.forEach((endEl, endIndex) => {
+                    if (el.name === endEl) {
+                        obj.name = el.name;
+                        obj.dispalyName = el.dispalyName;
+                        obj.children = el.children || [];
+                    }
+                    if (el.children && el.children.length > 0) {
+                        el.children.forEach((ee) => {
+                            if (ee.name == endEl) {
+                                deeps(el.children, muArr);
+                            }
+                        })
+                    }
+                });
+                if (Object.hasOwnProperty.call(obj, 'dispalyName')) {
+                    newDats.push(obj);
+                }
+            })
+            return newDats;
+        }
+    </script>
+</body>
+
+</html>
