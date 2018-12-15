@@ -89,7 +89,7 @@
                     }
                     if (el.children && el.children.length > 0) {
                         el.children.forEach((ee) => {
-                            if (ee.name == endEl) {
+                            if (ee.name === endEl) {
                                 deeps(el.children, muArr);
                             }
                         })
