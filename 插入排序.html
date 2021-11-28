@@ -1,0 +1,48 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-10 15:24:11
+ * @LastEditTime: 2021-10-10 17:33:59
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /web/数据结构和算法/datasandstructorAndalorithms-js/插入排序.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插入排序</title>
+</head>
+<!--  -->
+
+<body>
+    <div id="showRes"></div>
+    <script>
+        let arr = [1, 9, 10, 6, 7, 8, 9, 222, 4445, 6677, 990];
+        /* 
+        arr:Array等待排序数据
+        type:number排序顺序——升序0，降序1
+        */
+        function insertSort(arr, type) {
+            let myArr = arr, len = myArr.length, preIndex, current;
+            for (let i = 0; i < len; i++) {
+                preIndex = i - 1;
+                current = arr[i];
+                while (preIndex >= 0 && (type == 1 ? (current < arr[preIndex]) : (current >= arr[preIndex]))) {
+                    arr[preIndex + 1] = arr[preIndex];
+                    preIndex--;
+                }
+                arr[preIndex + 1] = current;
+            }
+            return arr;
+        }
+
+
+        let res = insertSort(arr, 0);
+        document.getElementById("showRes").innerHTML = res;
+    </script>
+</body>
+
+</html>

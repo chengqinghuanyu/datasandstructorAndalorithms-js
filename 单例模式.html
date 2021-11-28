@@ -1,0 +1,41 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-28 08:54:34
+ * @LastEditTime: 2021-11-28 09:23:00
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /数据结构和算法/datasandstructorAndalorithms-js/单例模式.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单例模式</title>
+</head>
+
+<body>
+    <p>单例模式：</p>
+    <script type="module">
+        class Single {
+            constructor(name) {
+                this.name = name;
+                this.instance = null;
+            }
+            static getInstance(name) {
+                if (!this.instance) {
+                    this.instance = new Single(name);
+                }
+                return this.instance;
+            }
+        }
+        console.log(Single.getInstance('ypx'));
+
+        var d = new Single('BTN');
+        console.log(d);
+    </script>
+</body>
+
+</html>

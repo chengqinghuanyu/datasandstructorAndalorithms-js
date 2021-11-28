@@ -1,0 +1,51 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-28 10:43:23
+ * @LastEditTime: 2021-11-28 12:28:48
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /数据结构和算法/datasandstructorAndalorithms-js/重复数字.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组中重复数字</title>
+</head>
+
+<body>
+    <script>
+        //题目找出数组中重复数字
+        // 题干：在一个长度为n的数组里面所有的数字都在0~n-1的范围内。数组的某些数字是重复的，但是不知道几个数字重复了，也不知道每个数字重复了几次。
+        // 请写个算法，找出任意重复的数字。例如输入长度为7的数组[2,3,0,2,5,3];那么对应输出的重复数字是2或者3.
+        // const arr = [2, 3, 0, 2, 5, 3, 3, 4, 5, 6, 3, 4, 5, 6, 100, 220, 256, 7890, 9235, 4567, 1999, 3, 2, 4, 5, 6, 7];
+        // const arr = [, , , ,];
+        const arr = [null, null, null, , , undefined, undefined,];
+
+        let getNumTimes = (arr) => {
+            let result = {};
+            if (Array.isArray(arr) && arr.length) {
+                let timesArr = [];
+                for (let i = 0; i < arr.length; i++) {
+                    let key = arr[i];
+                    if (timesArr.includes(key)) {
+                        result[key] = result[key] ? (++result[key]) : 2
+                    } else {
+                        timesArr.push(key);
+                    }
+                }
+                return result;
+            }
+
+            return result;
+        }
+
+        console.log(getNumTimes(arr));
+
+    </script>
+</body>
+
+</html>

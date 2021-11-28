@@ -1,0 +1,202 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-28 10:28:20
+ * @LastEditTime: 2021-11-28 10:28:21
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /数据结构和算法/datasandstructorAndalorithms-js/login.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加油，奥里给</title>
+</head>
+<style>
+    /**
+ * index.scss
+ * - Add any styles you want here!
+ */
+
+    body {
+        background: #f5f5f5;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .top-bar {
+        display: flex;
+        justify-content: space-between;
+        height: 40px;
+        line-height: 40px;
+        background-color: black;
+    }
+
+    .top-bar_left {
+        padding-left: 20px;
+        font-size: 22px;
+        color: #fff;
+    }
+
+    .top-bar_right {
+        display: flex;
+        color: #fff;
+        padding-right: 40px;
+    }
+
+    .top-bar_right div {
+        cursor: pointer;
+    }
+
+    .top-bar_right div:hover {
+        color: #ccc;
+    }
+
+    .login-btn {
+        margin-right: 20px;
+    }
+
+    .mask-layer {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding-top: 8%;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .login-wrapper {
+        width: 400px;
+        height: 200px;
+        padding-left: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+    }
+
+    .login-title {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 10px 0 0;
+    }
+
+    .close-btn {
+        cursor: pointer;
+    }
+
+    .user-input {
+        margin-top: 20px;
+    }
+
+    .login-text {
+        display: inline-block;
+        width: 60px;
+    }
+
+    .btn-wrapper {
+        display: flex;
+        margin-top: 20px;
+    }
+
+    .btn-wrapper button {
+        padding: 0 8px;
+        cursor: pointer;
+    }
+
+    .clear-btn {
+        margin-left: 10px;
+    }
+</style>
+
+<body>
+    <nav class="top-bar">
+        <div class="top-bar_left">
+            LTH BLOG
+        </div>
+        <div class="top-bar_right">
+            <div class="login-btn">登陆</div>
+            <div class="signin-btn">注册</div>
+        </div>
+    </nav>
+    <script>
+        class Login {
+
+            //构造器
+            constructor() {
+                this.init();
+            }
+
+            //初始化方法
+            init() {
+                //新建div
+                let mask = document.createElement('div');
+                //添加样式
+                mask.classList.add('mask-layer');
+                //添加模板字符串
+                mask.innerHTML =
+                    `
+  <div class="login-wrapper">
+    <div class="login-title">
+      <div class="title-text">登录框</div>
+      <div class="close-btn">×</div>
+    </div>
+    <div class="username-input user-input">
+      <span class="login-text">用户名:</span>
+      <input type="text">
+    </div>
+    <div class="pwd-input user-input">
+      <span class="login-text">密码:</span>
+      <input type="password">
+    </div>
+    <div class="btn-wrapper">
+      <button class="confrim-btn">确定</button>
+      <button class="clear-btn">清空</button>
+    </div>
+  </div>
+  `;
+                //插入元素
+                document.body.insertBefore(mask, document.body.childNodes[0]);
+
+                //注册关闭登录框事件
+                Login.addCloseLoginEvent();
+            }
+
+            //静态方法: 获取元素
+            static getLoginDom(cls) {
+                return document.querySelector(cls);
+            }
+
+            //静态方法: 注册关闭登录框事件
+            static addCloseLoginEvent() {
+                this.getLoginDom('.close-btn').addEventListener('click', () => {
+                    //给遮罩层添加style, 用于隐藏遮罩层
+                    this.getLoginDom('.mask-layer').style = "display: none";
+                })
+            }
+
+            //静态方法: 获取实例(单例)
+            static getInstance() {
+                if (!this.instance) {
+                    this.instance = new Login();
+                } else {
+                    //移除遮罩层style, 用于显示遮罩层
+                    this.getLoginDom('.mask-layer').removeAttribute('style');
+                }
+                return this.instance;
+            }
+        }
+        // /注册点击事件
+        Login.getLoginDom('.login-btn').addEventListener('click', () => {
+            console.log('zhe')
+            Login.getInstance();
+        })
+    </script>
+</body>
+
+</html>
